@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "dependencies": {    
+    "express": "^4.18.2",
+    "serialport": "^10.5.0",
+    "socket.io": "^4.6.1"
+  },
+  "name": "nano",
+  "version": "1.0.0",
+  "main": "node.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ard": "node arduino.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
