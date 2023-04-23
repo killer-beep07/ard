@@ -7,8 +7,8 @@ import { useSnackbar } from "notistack";
 
 
 function App() {
-  const orgKey = VITE_ORG;
-  const apiKey = VITE_API;
+  const orgKey = import.meta.env.VITE_ORG;
+  const apiKey = import.meta.env.VITE_API;
 
   //add state for imput and chat log
   const [input, setInput] = useState("");
@@ -131,7 +131,7 @@ function App() {
             // message: response + `${" NB, You're stressed"}`
           },
         ]);
-        console.log(messages);
+        // console.log(messages);
       })
       .catch((err) => {
         console.log(err.message);
