@@ -2,8 +2,8 @@
 import "./App.css";
 import "./normal.css";
 import { useContext, useEffect, useState } from "react";
-import { SocketContext } from "../../server";
-import { useSnackbar } from "notistack";
+// import { SocketContext } from "../../server";
+// import { useSnackbar } from "notistack";
 
 
 function App() {
@@ -18,14 +18,14 @@ function App() {
       message: "Hello, I am chatGPT, How can I assist you today ? ",
     },
   ]);
-  const socket = useContext(SocketContext);
+  // const socket = useContext(SocketContext);
 
-  const sendDataToArduino = () => {
-    console.log("Sent data to arduino: " );
-    // socket.emit("sentData", data);
-  };
+  // const sendDataToArduino = () => {
+  //   console.log("Sent data to arduino: " );
+  //   // socket.emit("sentData", data);
+  // };
 
-  const enqueueSnackbar  = useSnackbar();
+  // const enqueueSnackbar  = useSnackbar();
 
   // useEffect(() => {
   //   socket.on("data", (data) => {

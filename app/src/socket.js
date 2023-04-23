@@ -1,4 +1,4 @@
-
+//create a websocket client
 const socket = io('http://localhost:2000')
 
 // receive Msg from server
