@@ -7,8 +7,8 @@ import { useSnackbar } from "notistack";
 
 
 function App() {
-  const orgKey = "org-FZvqKUURqRBBKRKm6iYA3Ya0";
-  const apiKey = "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";
+  const orgKey = VITE_ORG;
+  const apiKey = VITE_API;
 
   //add state for imput and chat log
   const [input, setInput] = useState("");
@@ -20,8 +20,8 @@ function App() {
   ]);
   const socket = useContext(SocketContext);
 
-  const sendDataToArduino = (data) => {
-    console.log("Sent data to arduino: " + data);
+  const sendDataToArduino = () => {
+    console.log("Sent data to arduino: " );
     // socket.emit("sentData", data);
   };
 
@@ -131,7 +131,7 @@ function App() {
             // message: response + `${" NB, You're stressed"}`
           },
         ]);
-        // console.log(messages);
+        console.log(messages);
       })
       .catch((err) => {
         console.log(err.message);
@@ -161,7 +161,7 @@ function App() {
               rows="1"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onSubmit={() => sendDataToArduino("x")}
+              // onSubmit={() => sendDataToArduino("x")}
               className="chat-input-textarea"
             ></input>
           </form>
