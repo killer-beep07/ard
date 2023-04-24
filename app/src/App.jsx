@@ -2,11 +2,12 @@
 import "./App.css";
 import "./normal.css";
 import { useContext, useEffect, useState } from "react";
-// import { SocketContext } from "../../server";
+// import { SocketContext } from "./client.js";
 // import { useSnackbar } from "notistack";
 
-
 function App() {
+  const socket = io("http://localhost:4000");
+
   const orgKey = import.meta.env.VITE_ORG;
   const apiKey = import.meta.env.VITE_API;
 
@@ -43,13 +44,37 @@ function App() {
   //   });
   // }, [enqueueSnackbar, socket]);
 
-
   function clearChat() {
     setMessages([]);
   }
 
+  const webSocket = () => {
+    // handling the event when the connection to server is successful
+    socket.on("connect", () => {
+      // receive Msg from server
+      console.log(`Connection opened with Server: ${socket.id}`);
+    });
+
+    //handling the event when receiving a message from the server
+    socket.on("message", (data) => {
+      console.log(`Message from server: ${data}`);
+    });
+
+    //handling the event when the websocket connection is closed
+    socket.on("disconnect", (code) => {
+      console.log(`Connection closed with code: ${code}`);
+    });
+
+    setTimeout(() => {
+      socket.close();
+    }, 100000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    webSocket();
+
+    // add client message
     const newMessage = {
       sender: "user",
       message: `${input}`,
@@ -121,23 +146,57 @@ function App() {
         // console.log(data);
         const response = data.choices[0].message.content;
 
+        //sending a mesage to the server in 5 seconds
+        // setTimeout(() => {
+        // send Msg to server
+        socket.emit("sentData", "Hello, server!");
+        // add client message
+        const heartMessage = {
+          sender: "gpt",
+          message: ``,
+        };
+        socket.on("data", (data) => {
+          console.log(`Message from Arduino : ${data}`);
+          var healtyMsg = "";
+          if (data >= 60 && data <= 100) {
+            // healtyMsg = "Heart rate: regular";
+            setMessages([
+              ...chatMessages,
+              {
+                sender: "gpt",
+                message: response,
+              },
+            ]);
+          } else {
+            healtyMsg = "Heart rate: irregular ";
+            heartMessage.message = ` You're are stressed! `
+            setMessages([
+              ...chatMessages,
+              {
+                sender: "gpt",
+                //message: `${data.message}`+`${" NB, You're stressed"}`,
+                message: response + heartMessage.message + healtyMsg + data,
+                // message: `response + 'You're are stressed! + data`,
+                // message: response + `${" NB, You're stressed"}`
+              },
+            ]);
+          }
+          console.log(healtyMsg);
+        });
+        // // post all the old Messages & new Message
+        // const healthMessages = [...messages, heartMessage];
+        // // update our messages state
+        // setMessages(healthMessages);
+        // }, 60000);
+
         // console.log(response);
-        setMessages([
-          ...chatMessages,
-          {
-            sender: "gpt",
-             //message: `${data.message}`+`${" NB, You're stressed"}`,
-            message: response,
-            // message: response + `${" NB, You're stressed"}`
-          },
-        ]);
+
         // console.log(messages);
       })
       .catch((err) => {
         console.log(err.message);
       });
     setInput("");
- 
   }
 
   return (
@@ -208,12 +267,5 @@ const ChatMessage = ({ messages }) => {
     </div>
   );
 };
-
-
-
-
-
-
-
 
 export default App;

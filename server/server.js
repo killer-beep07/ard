@@ -1,14 +1,16 @@
 import { Server } from "socket.io";
+// import { instrument } from "@socket.io/admin-ui";
 
-const PORT = 3030
+const PORT = 3000
 //create a websocket server
 const io = new Server(PORT, {
   // Socket.IO options
   cors: { origin: "*" }
+  // cors: { origin: ["http://localhost:8080", "http://127.0.0.1:5500/", "https://admin.socket.io"] }
 });
 
 io.on("connection", (socket) => {
-  console.log('New client connected');
+  console.log(`New client connected with: ${socket.id}`);
 
   //send welcome message
   // socket.send("Hello this is welcome message");
@@ -21,7 +23,8 @@ io.on("connection", (socket) => {
     console.log(`Message from client: ${data}`);
     // socket.send("hi")
 
-    socket.emit('message', `${socket.id.substring(0,2)}`);
+    // socket.emit('message', `${data}`);
+    // socket.broadcast.emit('message', `${data}`);
 
     //message handling
     // if (data == "hi") { 
@@ -39,7 +42,7 @@ io.on("connection", (socket) => {
   });
 });
 
-
+// instrument(io, { auth: false })
 
 
 

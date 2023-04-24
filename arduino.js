@@ -3,7 +3,7 @@ import { SerialPort } from "serialport";
 import { Server as SocketIO } from "socket.io";
 
 const app = express();
-const SERVER_PORT = 8090;
+const SERVER_PORT = 4000;
 
 // Two paths as I have to test on my windows pc and mac
 const path = "COM6";
@@ -28,16 +28,31 @@ const reactSocket = new SocketIO(server, { cors: { origin: "*" } });
 // get from front-end send to arduino
 reactSocket.on("connection", (clientSocket) => {
   console.log(`React Client connected: ${clientSocket.id}`);
+
+  clientSocket.emit('message', 'Hello, client!');
+  
   clientSocket.on("sentData", (message) => {
     arduinoPort.write(`${message}\n`);
   });
+  
+  clientSocket.on("disconnect", () => {
+    console.log(`React Client disconnected: ${clientSocket.id}`);
+  });
+
 });
 
 // getting data from arduino and send to front-end
 arduinoPort.on("open", () => {
   console.log("Serial Port " + arduinoPort.path + " is opened.");
+
   arduinoPort.on("data", (data) => {
     console.log(`Arduino Data: ${data}`);
     reactSocket.emit("data", `${data}`);
+    
+  });
+
+  arduinoPort.on("close", () => {
+    console.log("Serial Port " + arduinoPort.path + " is closed.");
   });
 });
+
