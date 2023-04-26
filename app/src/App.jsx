@@ -78,14 +78,49 @@ function App() {
     const newMessage = {
       sender: "user",
       message: `${input}`,
-      //je suis stressé*
+      //
     };
+
+    const healtyArr = {
+      sender: "user",
+      message: "je suis stressé",
+      //
+    };
+    // const healtyMsg = "je suis stressé"
+    const healtyMsg = "Give a tips to get rid of the feeling of stress";
+
     // // post all the old Messages & new Message
-    const newMessages = [...messages, newMessage];
-    // // update our messages state
-    setMessages(newMessages);
-    // // process message to chatgpt: send it over and see the response
-    await sendMessage(newMessages);
+    let newMessages = [...messages, newMessage];
+
+    // setTimeout(() => {
+    // socket.on("data", (data) => {
+    socket.on("data", async (data) => {
+      // add healthy tips for irregular heart rate
+      if (data <= 60 && data >= 100) {
+        // add healthy alert for irregular heart rate
+        newMessage["message"] += `${healtyMsg}`;
+        newMessages.push(healtyArr);
+
+        // // update our messages state
+        // setMessages(newMessages);
+
+        // // process message to chatgpt: send it over and see the response
+        // await sendMessage(newMessages);
+      }
+      // else {
+        // update our messages state
+        setMessages(newMessages);
+
+        // post all the old Messages & new Message
+        await sendMessage(newMessages);
+      // }
+    });
+    // }, 6000);
+
+    // post all the old Messages & new Message
+    // await sendMessage(newMessages);
+
+    console.log(newMessages);
   };
 
   async function sendMessage(chatMessages) {
@@ -111,7 +146,7 @@ function App() {
       model: "gpt-3.5-turbo",
       messages: [systemMessage, ...apiMessages],
       temperature: 0.5,
-      max_tokens: 60,
+      max_tokens: 100,
     };
     // console.log(apiRequestBody);
 
@@ -136,7 +171,7 @@ function App() {
       body: JSON.stringify(
         apiRequestBody
         // { message: msg }
-        // msg
+        // msgq
       ),
     })
       .then((data) => {
@@ -168,8 +203,8 @@ function App() {
               },
             ]);
           } else {
-            healtyMsg = "Heart rate: irregular ";
-            heartMessage.message = ` You're are stressed! `
+            healtyMsg = "Heart rate: irregular: ";
+            heartMessage.message = ` You're are stressed! `;
             setMessages([
               ...chatMessages,
               {
