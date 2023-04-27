@@ -1,7 +1,7 @@
 {
   "name": "nano",
   "version": "1.0.0",
-  "description": "<<<<<<< HEAD # arduino heart rate \\https://prod.liveshare.vsengsaas.visualstudio.com/join?092D9289E0CC7923416159874A18C73DC1D8",
+  "description": "sensor heart rate",
   "main": "index.js",
   "directories": {
     "lib": "lib",
@@ -12,8 +12,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm run ./app/",
-    "server": " npm run ./server/arduino",
+    "client": "vite ./app/",
+    "server": "nodemon ./server/arduino",
     "app": " concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
