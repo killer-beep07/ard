@@ -12,10 +12,6 @@
     "app": " concurrently \"npm run server\" \"npm run dev\" "
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.1",
     "concurrently": "^8.0.1",
     "jsdom": "^21.1.1",
     "nodemon": "^2.0.22",
@@ -24,6 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "socket.io-client": "^4.6.1",
+    "vercel": "^29.0.3",
     "ws": "^8.13.0"
   },
   "devDependencies": {
