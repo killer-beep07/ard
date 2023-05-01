@@ -1,13 +1,13 @@
-<mxfile host="app.diagrams.net" modified="2023-04-30T12:41:33.435Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="sOm2afERO_9MRKsLmfOf" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-01T10:29:54.112Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="Yh52SfIj1QJ2ulvSFYIJ" version="21.2.3" type="github">
   <diagram name="Page-1" id="x3WW3A2NA5ecLm-U_PFt">
     <mxGraphModel dx="880" dy="522" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-1" value="USER :&amp;nbsp;&lt;br&gt;non stressé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-1" value="USER :&amp;nbsp;&lt;br&gt;non stressé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="180" y="210" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-17" value="écriture du message" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.067;entryY=0.275;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="CN_hh3Vsaduh72OKIFFR-2" target="CN_hh3Vsaduh72OKIFFR-18">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-17" value="écriture du message" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.067;entryY=0.275;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="CN_hh3Vsaduh72OKIFFR-2" target="CN_hh3Vsaduh72OKIFFR-18" edge="1">
           <mxGeometry x="0.4719" y="22" relative="1" as="geometry">
             <mxPoint x="750" y="130" as="targetPoint" />
             <Array as="points">
@@ -20,10 +20,10 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-2" value="GENERATE CHAT" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-2" value="GENERATE CHAT" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;" parent="1" vertex="1">
           <mxGeometry x="440" y="110" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-8" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="CN_hh3Vsaduh72OKIFFR-2">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-8" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="CN_hh3Vsaduh72OKIFFR-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="180" y="230" as="sourcePoint" />
             <mxPoint x="430" y="150" as="targetPoint" />
@@ -34,16 +34,16 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="420" y="60" width="160" height="380" as="geometry" />
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="420" y="50" width="154" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="CN_hh3Vsaduh72OKIFFR-11" target="CN_hh3Vsaduh72OKIFFR-11">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="CN_hh3Vsaduh72OKIFFR-11" target="CN_hh3Vsaduh72OKIFFR-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-18" value="CHAT GENERATOR" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;dashed=1;" vertex="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-18" value="CHAT GENERATOR" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="680" y="100" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-19" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.067;entryY=0.275;entryDx=0;entryDy=0;entryPerimeter=0;rounded=0;strokeColor=default;dashed=1;" edge="1" parent="1" source="CN_hh3Vsaduh72OKIFFR-18">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-19" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.067;entryY=0.275;entryDx=0;entryDy=0;entryPerimeter=0;rounded=0;strokeColor=default;dashed=1;" parent="1" source="CN_hh3Vsaduh72OKIFFR-18" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="550" y="170" as="targetPoint" />
             <mxPoint x="656" y="180" as="sourcePoint" />
@@ -55,7 +55,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-21" value="requête gpt3&amp;nbsp;" style="endArrow=classic;startArrow=open;html=1;rounded=0;entryX=0.056;entryY=0.292;entryDx=0;entryDy=0;entryPerimeter=0;startFill=0;" edge="1" parent="1" target="CN_hh3Vsaduh72OKIFFR-22">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-21" value="requête gpt3&amp;nbsp;" style="endArrow=classic;startArrow=open;html=1;rounded=0;entryX=0.056;entryY=0.292;entryDx=0;entryDy=0;entryPerimeter=0;startFill=0;" parent="1" target="CN_hh3Vsaduh72OKIFFR-22" edge="1">
           <mxGeometry x="0.2657" y="29" width="50" height="50" relative="1" as="geometry">
             <mxPoint x="800" y="140" as="sourcePoint" />
             <mxPoint x="1060" y="140" as="targetPoint" />
@@ -65,19 +65,19 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-27" value="réponse du chatgpt" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;exitX=0.039;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="CN_hh3Vsaduh72OKIFFR-22" target="CN_hh3Vsaduh72OKIFFR-18">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-27" value="réponse du chatgpt" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;exitX=0.039;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="CN_hh3Vsaduh72OKIFFR-22" target="CN_hh3Vsaduh72OKIFFR-18" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="800" y="120" as="targetPoint" />
             <mxPoint x="1040" y="240" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-22" value="OPENAI API" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-22" value="OPENAI API" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;" parent="1" vertex="1">
           <mxGeometry x="1030" y="160" width="180" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-30" value="USER:&lt;br&gt;stressé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-30" value="USER:&lt;br&gt;stressé" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="180" y="340" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-33" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="CN_hh3Vsaduh72OKIFFR-30">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-33" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="CN_hh3Vsaduh72OKIFFR-30" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="280" y="360" as="sourcePoint" />
             <mxPoint x="440" y="340" as="targetPoint" />
@@ -87,10 +87,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-35" value="GENERATE CHAT" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-35" value="GENERATE CHAT" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;" parent="1" vertex="1">
           <mxGeometry x="440" y="310" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-37" value="écriture du message + détection du stress" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-37" value="écriture du message + détection du stress" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;" parent="1" edge="1">
           <mxGeometry x="0.3095" y="20" relative="1" as="geometry">
             <mxPoint x="698" y="330" as="targetPoint" />
             <mxPoint x="540" y="320" as="sourcePoint" />
@@ -101,10 +101,10 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-38" value="CHAT GENERATOR" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;dashed=1;" vertex="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-38" value="CHAT GENERATOR" style="ellipse;whiteSpace=wrap;html=1;gradientColor=none;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="690" y="310" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-40" value="affichage du message" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;rounded=0;strokeColor=default;dashed=1;" edge="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-40" value="affichage du message" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;rounded=0;strokeColor=default;dashed=1;" parent="1" edge="1">
           <mxGeometry x="-0.2903" y="20" relative="1" as="geometry">
             <mxPoint x="550" y="370" as="targetPoint" />
             <mxPoint x="706" y="380" as="sourcePoint" />
@@ -117,7 +117,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-43" value="requête gpt3&amp;nbsp;" style="endArrow=classic;startArrow=open;html=1;rounded=0;startFill=0;" edge="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-43" value="requête gpt3&amp;nbsp;" style="endArrow=classic;startArrow=open;html=1;rounded=0;startFill=0;" parent="1" edge="1">
           <mxGeometry x="0.5173" y="-8" width="50" height="50" relative="1" as="geometry">
             <mxPoint x="810" y="350" as="sourcePoint" />
             <mxPoint x="1070" y="280" as="targetPoint" />
@@ -127,10 +127,19 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="CN_hh3Vsaduh72OKIFFR-44" value="réponse du chatgpt&lt;br&gt;&amp;nbsp;tout en donnant &lt;br&gt;des conseils&lt;br&gt;&amp;nbsp;pour éviter de se stresser" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;exitX=0.039;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+        <mxCell id="CN_hh3Vsaduh72OKIFFR-44" value="réponse du chatgpt&lt;br&gt;&amp;nbsp;tout en donnant &lt;br&gt;des conseils&lt;br&gt;&amp;nbsp;pour éviter de se stresser" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;exitX=0.039;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="810" y="350" as="targetPoint" />
             <mxPoint x="1067" y="279" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p_kRZyicSgyDxQygRzZf-1" value="heart rate app" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="460" y="60" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p_kRZyicSgyDxQygRzZf-5" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="90" as="sourcePoint" />
+            <mxPoint x="574" y="90" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
