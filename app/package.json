@@ -7,14 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": " nodemon ../server/arduino",
+    "app": " concurrently \"npm run server\" \"npm run dev\" "
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
+    "concurrently": "^8.0.1",
     "jsdom": "^21.1.1",
+    "nodemon": "^2.0.22",
     "notistack": "^3.0.1",
     "openai": "^3.2.1",
     "react": "^18.2.0",

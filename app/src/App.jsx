@@ -1,89 +1,148 @@
 /* eslint-disable no-template-curly-in-string */
 import "./App.css";
-import "./normal.css";
-import { useContext, useEffect, useState } from "react";
-// import { SocketContext } from "./client.js";
-// import { useSnackbar } from "notistack";
+import { useEffect, useState } from "react";
 
 function App() {
-  const socket = io("http://localhost:4000");
+  const [socket, setSocket] = useState(null);
 
   const orgKey = import.meta.env.VITE_ORG;
   const apiKey = import.meta.env.VITE_API;
 
   //add state for imput and chat log
   const [input, setInput] = useState("");
+
+  const [healthyMsg, setHealthyMsg] = useState(".");
+  // const [firstData, setFirstData] = useState(0);
+
+  const ipt = document.querySelector(".input");
+  function disablePrompt() {
+    ipt.disabled = true;
+  }
+
+  function enablePrompt() {
+    ipt.disabled = false;
+  }
   const [messages, setMessages] = useState([
     {
       sender: "gpt",
       message: "Hello, I am chatGPT, How can I assist you today ? ",
     },
   ]);
-  // const socket = useContext(SocketContext);
-
-  // const sendDataToArduino = () => {
-  //   console.log("Sent data to arduino: " );
-  //   // socket.emit("sentData", data);
-  // };
-
-  // const enqueueSnackbar  = useSnackbar();
-
-  // useEffect(() => {
-  //   socket.on("data", (data) => {
-  //     console.log(data);
-  //     // setZumoLog((prev) => [...prev, data]);
-  //     if (data === "") return;
-  //     if (
-  //       data.startsWith("ERROR") ||
-  //       data.startsWith("Object") ||
-  //       data.startsWith("Corner") ||
-  //       data.startsWith("Left and Right")
-  //     ) {
-  //       enqueueSnackbar(data, { variant: "error" });
-  //     }
-  //   });
-  // }, [enqueueSnackbar, socket]);
-
   function clearChat() {
     setMessages([]);
   }
 
-  const webSocket = () => {
-    // handling the event when the connection to server is successful
-    socket.on("connect", () => {
-      // receive Msg from server
-      console.log(`Connection opened with Server: ${socket.id}`);
-    });
+  useEffect(() => {
+    // Create a new WebSocket connection
+    const newSocket = io("http://localhost:4000");
 
-    //handling the event when receiving a message from the server
-    socket.on("message", (data) => {
-      console.log(`Message from server: ${data}`);
-    });
+    // Save the WebSocket connection to state
+    setSocket(newSocket);
 
-    //handling the event when the websocket connection is closed
-    socket.on("disconnect", (code) => {
-      console.log(`Connection closed with code: ${code}`);
-    });
-
-    setTimeout(() => {
-      socket.close();
-    }, 100000);
-  };
+    // Clean up the WebSocket connection when the component unmounts
+    return () => {
+      newSocket.close();
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    disablePrompt();
     webSocket();
 
     // add client message
     const newMessage = {
       sender: "user",
-      message: `${input}`,
-      //je suis stressé*
+      message: `${input}${healthyMsg}`,
+      direction: "outgoing",
     };
+
     // // post all the old Messages & new Message
     const newMessages = [...messages, newMessage];
+    // console.log(firstData);
+    // let firstData = 0;
+    // socket?.on("data", async (data) => {
+    //   console.log(data);
+    //   // setFirstData(data);
+    //   firstData = data;
+    // });
+
+    // if (firstData !== 0 && firstData !== 51 && firstData !== 52) {
+    //   // setTimeout(() => {
+    //   setHealthyMsg(
+    //     ". Je me sens stressé, Donnez-moi des conseils pour me débarrasser de cette sensation !"
+    //   );
+    //   // }, 60000);
+    // } else {
+    //   setHealthyMsg(".");
+    // }
+
+    // setTimeout(() => {
+    // Define a flag variable to ensure that the interval is only scheduled once
+    // let isIntervalScheduled = false;
+
+    socket.on("data", (data) => {
+      console.log(data);
+      // setFirstData(data);
+      // setInterval(() => {
+      // Check if data is not a heartbeat signal
+      if (data != 0 && data != 51 && data != 52) {
+        // Set the flag variable to true to indicate that the interval has been scheduled
+        // isIntervalScheduled = true;
+        setHealthyMsg(
+          ". Je me sens stressé, Donnez-moi des conseils pour me débarrasser de cette sensation !"
+        );
+      } else {
+        setHealthyMsg('.')
+      }
+    });
+
+    // setInterval(() => {
+    //   if (isIntervalScheduled) {
+    //     // add healthy tips for irregular heart rate
+    //     setHealthyMsg(
+    //       ". Je me sens stressé, Donnez-moi des conseils pour me débarrasser de cette sensation !"
+    //     );
+    //   }
+    // }, 60000);
+    // let isFirstData = true; // add a flag to track the first data received
+
+    // socket.on("data", (data) => {
+    //   console.log(data);
+
+    //   if (data != 0) {
+    //     // check if data is not 0
+    //     if (isFirstData) {
+    //       // check if this is the first data received
+    //       // store the data on your website
+    //       // ...
+
+    //       isFirstData = false; // update the flag to indicate that the first data has been received
+    //     } else if (data != 51 && data != 52) {
+    // check if data is not 51 or 52
+    // interpret the data as null for 1 minute
+    //       setHealthyMsg(
+    //         ". Je me sens stressé, Donnez-moi des conseils pour me débarrasser de cette sensation !"
+    //       ); // or any other null value you want to use
+
+    //       // set a timer to reset the interpretation of data after 1 minute
+    //       setTimeout(() => {
+    //         setHealthyMsg("."); // reset the null value
+    //       }, 60000);
+    //     }
+    //   }
+    // });
+    // setHealthyMsg(
+    //   // "My heart rate is irregular. What symptoms am I experiencing ? Give me some tips to get rid of the feeling of stress"
+    //   ". Je me sens stressé, Donnez-moi des conseils pour me débarrasser de cette sensation !"
+    // );
+    // }, 60000);
+    // }
+
+    // }, 180000);  // 5 minutes
     // // update our messages state
     setMessages(newMessages);
+
     // // process message to chatgpt: send it over and see the response
     await sendMessage(newMessages);
   };
@@ -104,115 +163,112 @@ function App() {
     const systemMessage = {
       // define how chatgpt talks in initial message
       role: "system",
-      content: "Explain all concepts like I am 20 years old",
+      // content: "Explain all concepts like I am 20 years old",
+      content: "Expliquez tous les concepts comme si j'avais 20 ans",
     };
 
     const apiRequestBody = {
       model: "gpt-3.5-turbo",
       messages: [systemMessage, ...apiMessages],
       temperature: 0.5,
-      max_tokens: 60,
+      max_tokens: 1024,
     };
-    // console.log(apiRequestBody);
+    var response = "";
 
-    // const msg = apiRequestBody.messages.map((messfage) => message).join("\n");
-    // const msg = apiRequestBody.messages;
-
-    // console.log(msg);
-
-    // fetch response to the api combining the cat log array of messages and sending it as a message to localhost:30000 as a post
-
-    //   // const response = await fetch("http://localhost:5000/", {
-    // fetch("http://localhost:5000/", {
-    fetch("https://api.openai.com/v1/chat/completions", {
+    // fetch response to the api combining the cat log array of messages and sending it as a message to openai api as a post
+    await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        // "Access-Control-Allow-Origin": "http://localhost:3000",
         Authorization: "Bearer " + apiKey,
         "OpenAI-Organization": orgKey,
         "Content-Type": "application/json",
       },
-
-      body: JSON.stringify(
-        apiRequestBody
-        // { message: msg }
-        // msg
-      ),
+      body: JSON.stringify(apiRequestBody),
     })
       .then((data) => {
         return data.json();
       })
       .then((data) => {
-        // console.log(data);
-        const response = data.choices[0].message.content;
-
-        //sending a mesage to the server in 5 seconds
-        // setTimeout(() => {
-        // send Msg to server
-        socket.emit("sentData", "Hello, server!");
-        // add client message
-        const heartMessage = {
-          sender: "gpt",
-          message: ``,
-        };
-        socket.on("data", (data) => {
-          console.log(`Message from Arduino : ${data}`);
-          var healtyMsg = "";
-          if (data >= 60 && data <= 100) {
-            // healtyMsg = "Heart rate: regular";
-            setMessages([
-              ...chatMessages,
-              {
-                sender: "gpt",
-                message: response,
-              },
-            ]);
-          } else {
-            healtyMsg = "Heart rate: irregular ";
-            heartMessage.message = ` You're are stressed! `
-            setMessages([
-              ...chatMessages,
-              {
-                sender: "gpt",
-                //message: `${data.message}`+`${" NB, You're stressed"}`,
-                message: response + heartMessage.message + healtyMsg + data,
-                // message: `response + 'You're are stressed! + data`,
-                // message: response + `${" NB, You're stressed"}`
-              },
-            ]);
-          }
-          console.log(healtyMsg);
-        });
-        // // post all the old Messages & new Message
-        // const healthMessages = [...messages, heartMessage];
-        // // update our messages state
-        // setMessages(healthMessages);
-        // }, 60000);
-
+        response = data.choices[0].message.content;
+        setMessages([
+          ...chatMessages,
+          {
+            sender: "gpt",
+            message: response,
+          },
+        ]);
         // console.log(response);
-
-        // console.log(messages);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
+        // response = err.message;
       });
+
     setInput("");
+    enablePrompt();
   }
+
+  // This code will run when the page is loaded or reloaded
+  const webSocket = () => {
+    // return new Promise((resolve, reject) => {
+    // your websocket logic here
+    // handling the event when the connection to server is successful
+    socket.on("connect", () => {
+      // receive Msg from server
+      console.log(`Connection opened with Server: ${socket.id}`);
+    });
+
+    //handling the event when receiving a message from the server
+    socket.on("message", async (data) => {
+      console.log(`Message from server: ${data}`);
+    });
+
+    //handling the event when the websocket connection is closed
+    socket.on("disconnect", async (code) => {
+      console.log(`Connection closed with code: ${code}`);
+    });
+    // });
+  };
+
+  useEffect(() => {
+    // Set a timeout for the WebSocket connection
+    const timeout = setTimeout(() => {
+      socket?.close();
+      console.log("WebSocket connection timed out");
+    }, 10000); // 10 seconds
+
+    // Clear the timeout when the WebSocket connection is closed
+    window.addEventListener("beforeunload", () => {
+      clearTimeout(timeout);
+      console.log("WebSocket connection timed in");
+    });
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      // socket.removeEventListener('close', () => {});
+      window.removeEventListener("beforeunload", {});
+    };
+  }, []);
+
+  // Add an event listener for the beforeunload event
+  // const handleBeforeUnload = () => {
+  //   timeout()
+  // };
 
   return (
     <div className="App">
       <aside className="sidemenu">
         <div className="side-menu-button" onClick={clearChat}>
-          <span> +</span>
-          New chat
+          <span> + </span>
+          <p>New chat</p>
         </div>
       </aside>
 
       <section className="chatbox">
         <div className="chat-log">
-          {messages.map((message, i) => {
-            return <ChatMessage key={i} messages={message} />;
-          })}
+          {messages.map((message, index) => (
+            <ChatMessage key={index} messages={message} />
+          ))}
         </div>
         <div className="chat-input-holder">
           <form onSubmit={handleSubmit}>
@@ -221,7 +277,7 @@ function App() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               // onSubmit={() => sendDataToArduino("x")}
-              className="chat-input-textarea"
+              className="input"
             ></input>
           </form>
         </div>
@@ -235,28 +291,7 @@ const ChatMessage = ({ messages }) => {
       <div className="chat-message-center">
         <div className={`avatar  ${messages.sender === "gpt" && "chatgpt"}`}>
           {messages.sender === "gpt" ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              shape-rendering="geometricPrecision"
-              text-rendering="geometricPrecision"
-              image-rendering="optimizeQuality"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              viewBox="0 0 512 512"
-            >
-              <rect
-                fill="#10A37F"
-                width="512"
-                height="512"
-                rx="104.187"
-                ry="105.042"
-              />
-              <path
-                fill="#fff"
-                fill-rule="nonzero"
-                d="M378.68 230.011a71.432 71.432 0 003.654-22.541 71.383 71.383 0 00-9.783-36.064c-12.871-22.404-36.747-36.236-62.587-36.236a72.31 72.31 0 00-15.145 1.604 71.362 71.362 0 00-53.37-23.991h-.453l-.17.001c-31.297 0-59.052 20.195-68.673 49.967a71.372 71.372 0 00-47.709 34.618 72.224 72.224 0 00-9.755 36.226 72.204 72.204 0 0018.628 48.395 71.395 71.395 0 00-3.655 22.541 71.388 71.388 0 009.783 36.064 72.187 72.187 0 0077.728 34.631 71.375 71.375 0 0053.374 23.992H271l.184-.001c31.314 0 59.06-20.196 68.681-49.995a71.384 71.384 0 0047.71-34.619 72.107 72.107 0 009.736-36.194 72.201 72.201 0 00-18.628-48.394l-.003-.004zM271.018 380.492h-.074a53.576 53.576 0 01-34.287-12.423 44.928 44.928 0 001.694-.96l57.032-32.943a9.278 9.278 0 004.688-8.06v-80.459l24.106 13.919a.859.859 0 01.469.661v66.586c-.033 29.604-24.022 53.619-53.628 53.679zm-115.329-49.257a53.563 53.563 0 01-7.196-26.798c0-3.069.268-6.146.79-9.17.424.254 1.164.706 1.695 1.011l57.032 32.943a9.289 9.289 0 009.37-.002l69.63-40.205v27.839l.001.048a.864.864 0 01-.345.691l-57.654 33.288a53.791 53.791 0 01-26.817 7.17 53.746 53.746 0 01-46.506-26.818v.003zm-15.004-124.506a53.5 53.5 0 0127.941-23.534c0 .491-.028 1.361-.028 1.965v65.887l-.001.054a9.27 9.27 0 004.681 8.053l69.63 40.199-24.105 13.919a.864.864 0 01-.813.074l-57.66-33.316a53.746 53.746 0 01-26.805-46.5 53.787 53.787 0 017.163-26.798l-.003-.003zm198.055 46.089l-69.63-40.204 24.106-13.914a.863.863 0 01.813-.074l57.659 33.288a53.71 53.71 0 0126.835 46.491c0 22.489-14.033 42.612-35.133 50.379v-67.857c.003-.025.003-.051.003-.076a9.265 9.265 0 00-4.653-8.033zm23.993-36.111a81.919 81.919 0 00-1.694-1.01l-57.032-32.944a9.31 9.31 0 00-4.684-1.266 9.31 9.31 0 00-4.684 1.266l-69.631 40.205v-27.839l-.001-.048c0-.272.129-.528.346-.691l57.654-33.26a53.696 53.696 0 0126.816-7.177c29.644 0 53.684 24.04 53.684 53.684a53.91 53.91 0 01-.774 9.077v.003zm-150.831 49.618l-24.111-13.919a.859.859 0 01-.469-.661v-66.587c.013-29.628 24.053-53.648 53.684-53.648a53.719 53.719 0 0134.349 12.426c-.434.237-1.191.655-1.694.96l-57.032 32.943a9.272 9.272 0 00-4.687 8.057v.053l-.04 80.376zm13.095-28.233l31.012-17.912 31.012 17.9v35.812l-31.012 17.901-31.012-17.901v-35.8z"
-              />
-            </svg>
+            <img className="img" src="favicon.ico" alt="" />
           ) : (
             <img className="img" src="user.png" alt="" />
           )}
@@ -269,3 +304,23 @@ const ChatMessage = ({ messages }) => {
 };
 
 export default App;
+// class ErrorBoundary extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { hasError: false };
+//   }
+
+//   static getDerivedStateFromError(error) {
+//     // Update state so the next render will show the fallback UI.
+//     return { hasError: true };
+//   }
+
+//   render() {
+//     if (this.state.hasError) {
+//       // You can render any custom fallback UI here.
+//       return <h1>Something went wrong.</h1>;
+//     }
+
+//     return this.props.children;
+//   }
+// }
